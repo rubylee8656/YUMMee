@@ -1,0 +1,16 @@
+.home-top-carousel-container {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    // outline: 1px solid red;
+  .home-top-carousel-banner {
+    width: 100%;
+    height: 800px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .5;
+    }
+  }
+}
