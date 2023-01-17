@@ -1,7 +1,9 @@
 import '../tailwind.css'
-import { Fragment } from 'react'
+import { Fragment, useContext } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom'
+import AuthContext from '../contexts/AuthContext'
 // import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 // const solutions = [
@@ -86,12 +88,14 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const { myAuth, logout } = useContext(AuthContext)
+
   return (
     <Popover className="relative bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#/" className="flex">
+            <Link to={'/'} className="flex">
               <h1 className="text-3xl font-bold text-amber-500">YUMMee</h1>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +111,7 @@ export default function Navbar() {
                   d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
                 />
               </svg>
-            </a>
+            </Link>
           </div>
           <div className="-my-2 -mr-2 md:hidden">
             <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:bg-amber-500">
@@ -295,18 +299,15 @@ export default function Navbar() {
             </Popover> */}
           </Popover.Group>
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-            <a
-              href="#/"
-              className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Sign in
-            </a>
-            <a
-              href="#/"
+            <div className="whitespace-nowrap text-base font-medium text-gray-500">
+              Hello
+            </div>
+            <Link
+              to={'/login'}
               className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-amber-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-amber-600"
             >
-              Sign up
-            </a>
+              登入
+            </Link>
           </div>
         </div>
       </div>
@@ -377,27 +378,15 @@ export default function Navbar() {
                   href="#/"
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
-                  Pricing
+                  Shop 商店
                 </a>
                 <a
                   href="#/"
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
-                  Pricing
+                  Product 商品
                 </a>
 
-                <a
-                  href="#/"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Docs
-                </a>
-                <a
-                  href="#/"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Docs
-                </a>
                 {/* {resources.map((item) => (
                   <a
                     key={item.name}
@@ -413,13 +402,16 @@ export default function Navbar() {
                   href="#/"
                   className="flex w-full items-center justify-center rounded-md border border-transparent bg-amber-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-amber-600"
                 >
-                  Sign up
+                  登入
                 </a>
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
-                  Existing customer?{' '}
-                  <a href="#/" className="text-amber-500 hover:text-amber-600">
-                    Sign in
-                  </a>
+                  還不是會員 ?{' '}
+                  <Link
+                    to={'/login'}
+                    className="text-amber-500 hover:text-amber-600"
+                  >
+                    註冊
+                  </Link>
                 </p>
               </div>
             </div>

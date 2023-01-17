@@ -1,9 +1,17 @@
 // import logo from './logo.svg';
 // import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { AuthContextProvider } from './contexts/AuthContext'
+
+import Navbar from './components/navbar'
+import Footer from './components/footer'
 
 //homepage
 import Homepage from './home/homepage'
+
+//member
+import UserSign from './member/usersign'
+import UserLogin from './member/userlogin'
 
 function App() {
   return (
@@ -23,19 +31,25 @@ function App() {
     //     </a>
     //   </header>
     // </div>
+
     <BrowserRouter>
-      <Routes>
-        {/* homepage */}
-        <Route index path="/" element={<Homepage />} />
-        {/* shop */}
-        {/* <Route index path="/shop" /> */}
-        {/* product */}
-        {/* <Route index path="/product" /> */}
-        {/* member */}
-        {/* <Route index path="/member" /> */}
-        {/* cart */}
-        {/* <Route index path="/cart" /> */}
-      </Routes>
+      <AuthContextProvider>
+        <Navbar />
+        <Routes>
+          {/* homepage */}
+          <Route path="/" element={<Homepage />} />
+          {/* shop */}
+          {/* <Route index path="/shop" /> */}
+          {/* product */}
+          {/* <Route index path="/product" /> */}
+          {/* member */}
+          <Route path="/sign" element={<UserSign />} />
+          <Route path="/login" element={<UserLogin />} />
+          {/* cart */}
+          {/* <Route index path="/cart" /> */}
+        </Routes>
+        <Footer />
+      </AuthContextProvider>
     </BrowserRouter>
   )
 }
