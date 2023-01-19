@@ -1,10 +1,12 @@
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import axios from 'axios'
+import AuthContext from '../contexts/AuthContext'
 
 export default function UserLogin() {
   const navigate = useNavigate()
+  const { setMyAuth } = useContext(AuthContext)
 
   const [mbData, setMbData] = useState({
     email: '',
@@ -18,11 +20,13 @@ export default function UserLogin() {
       //設定進localstorage
       localStorage.setItem('auth', JSON.stringify(data))
       //設定進usecontext
-      alert('登入成功') // alert登入成功
-      //   navigate('/')
+      setMyAuth({ ...data, authorised: true })
+      // alert登入成功
+      alert('登入成功')
+      navigate('/')
     } else {
-      alert('登入失敗')
       localStorage.removeItem('auth')
+      alert('登入失敗')
     }
     console.log(data)
   }
@@ -97,12 +101,15 @@ export default function UserLogin() {
             </div>
             <div className="flex items-center justify-center">
               <div className="text-sm">
-                <Link
-                  to={'/sign'}
-                  className="font-medium text-amber-600 hover:text-amber-500"
-                >
-                  不是會員?點我註冊
-                </Link>
+                <p className="text-white">
+                  還不是會員?
+                  <Link
+                    to={'/sign'}
+                    className="font-medium text-amber-600 hover:text-amber-500"
+                  >
+                    點我註冊
+                  </Link>
+                </p>
               </div>
             </div>
             <div>

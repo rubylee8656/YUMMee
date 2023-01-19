@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Slider from 'react-slick'
 import '../../../node_modules/slick-carousel/slick/slick.css'
 import '../../../node_modules/slick-carousel/slick/slick-theme.css'
-import { imgUrl } from '../../my-config'
+import { browserUrl } from '../../my-config'
 import '../style/topcarousel.scss'
 
 function NextArrow(props) {
@@ -47,25 +47,25 @@ export default class TopCarousel extends Component {
         <Slider {...settings}>
           <div className="home-top-carousel-banner">
             <img
-              src={imgUrl + '/home-img/food_photo00.jpg'}
+              src={browserUrl + '/home-img/food_photo00.jpg'}
               alt="top carousel"
             />
           </div>
           <div className="home-top-carousel-banner">
             <img
-              src={imgUrl + '/home-img/food_photo01.jpg'}
+              src={browserUrl + '/home-img/food_photo01.jpg'}
               alt="top carousel"
             />
           </div>
           <div className="home-top-carousel-banner">
             <img
-              src={imgUrl + '/home-img/food_photo02.jpg'}
+              src={browserUrl + '/home-img/food_photo02.jpg'}
               alt="top carousel"
             />
           </div>
           <div className="home-top-carousel-banner">
             <img
-              src={imgUrl + '/home-img/food_photo03.jpg'}
+              src={browserUrl + '/home-img/food_photo03.jpg'}
               alt="top carousel"
             />
           </div>

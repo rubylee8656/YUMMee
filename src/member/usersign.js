@@ -1,9 +1,10 @@
 import { LockClosedIcon } from '@heroicons/react/20/solid'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 
 export default function UserSign() {
+  const navigate = useNavigate()
   const [mbData, setMbData] = useState({
     email: '',
     password: '',
@@ -14,6 +15,7 @@ export default function UserSign() {
     const { data } = await axios.post(signapi, mbData)
     if (data.success) {
       alert('註冊成功')
+      navigate('/')
     } else {
       alert('註冊失敗')
     }

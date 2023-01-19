@@ -29,7 +29,7 @@ export const AuthContextProvider = function ({ children }) {
   const logout = () => {
     localStorage.removeItem('auth')
     setMyAuth(unAuth)
-    alert('登入成功')
+    alert('登出成功')
     navigate('/')
   }
   return (

@@ -201,12 +201,12 @@ export default function Navbar() {
             >
               Shop 店鋪
             </a>
-            <a
-              href="#/"
+            <Link
+              to={'/product/'}
               className="text-base font-medium text-gray-500 hover:text-gray-900 rounded px-4 py-2 focus:bg-amber-500 focus:text-white"
             >
               Product 商品
-            </a>
+            </Link>
 
             {/* <Popover className="relative">
               {({ open }) => (
@@ -299,15 +299,39 @@ export default function Navbar() {
             </Popover> */}
           </Popover.Group>
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-            <div className="whitespace-nowrap text-base font-medium text-gray-500">
-              Hello
+            <div className="relative py-2">
+              <div className="t-0 absolute left-3">
+                <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
+                  0
+                </p>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 576 512"
+                className="file: mt-4 h-6 w-6"
+              >
+                <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
+              </svg>
             </div>
-            <Link
-              to={'/login'}
-              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-amber-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-amber-600"
-            >
-              登入
-            </Link>
+            {myAuth.authorised ? (
+              <Link
+                to={'/'}
+                className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-amber-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-amber-600"
+                onClick={(e) => {
+                  e.preventDefault()
+                  logout()
+                }}
+              >
+                登出
+              </Link>
+            ) : (
+              <Link
+                to={'/login'}
+                className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-amber-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-amber-600"
+              >
+                登入
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -397,14 +421,25 @@ export default function Navbar() {
                   </a>
                 ))} */}
               </div>
+
               <div>
-                <a
-                  href="#/"
-                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-amber-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-amber-600"
-                >
-                  登入
-                </a>
-                <p className="mt-6 text-center text-base font-medium text-gray-500">
+                {myAuth.authorised ? (
+                  <Link
+                    to={'/'}
+                    className="flex w-full items-center justify-center rounded-md border border-transparent bg-amber-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-amber-600"
+                  >
+                    登出
+                  </Link>
+                ) : (
+                  <Link
+                    to={'/login'}
+                    className="flex w-full items-center justify-center rounded-md border border-transparent bg-amber-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-amber-600"
+                  >
+                    登入
+                  </Link>
+                )}
+
+                {/* <p className="mt-6 text-center text-base font-medium text-gray-500">
                   還不是會員 ?{' '}
                   <Link
                     to={'/login'}
@@ -412,7 +447,7 @@ export default function Navbar() {
                   >
                     註冊
                   </Link>
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

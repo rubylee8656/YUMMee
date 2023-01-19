@@ -1,3 +1,3 @@
-export const imgUrl = 'http://localhost:3000'
+export const browserUrl = 'http://localhost:3000'
 
-export const imgServerUrl = 'http://localhost:3008'
+export const serverUrl = 'http://localhost:3008'
