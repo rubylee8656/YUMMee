@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { serverUrl } from '../my-config'
+import { serverUrl } from '../../my-config'
 import { Link } from 'react-router-dom'
 
 /*
@@ -81,7 +81,7 @@ export default function ProductList() {
   }, [])
 
   return (
-    <div className="bg-neutral-700">
+    <div className="" style={{ backgroundColor: '#273F41' }}>
       <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Products</h2>
 
@@ -89,7 +89,10 @@ export default function ProductList() {
           {product.map((v, i) => {
             return (
               <div key={v.sid} className="group">
-                <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-neutral-700 xl:aspect-w-7 xl:aspect-h-8">
+                <div
+                  className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg xl:aspect-w-7 xl:aspect-h-8"
+                  style={{ backgroundColor: '#273F41' }}
+                >
                   <Link to={`/product/${v.sid}`}>
                     <img
                       src={serverUrl + `/images/product/${v.picture_url}`}

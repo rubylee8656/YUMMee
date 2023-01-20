@@ -1,5 +1,7 @@
 // import logo from './logo.svg';
 // import './App.css';
+import './tailwind.css'
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthContextProvider } from './contexts/AuthContext'
 import { configureStore } from '@reduxjs/toolkit'
@@ -11,15 +13,18 @@ import Navbar from './components/navbar'
 import Footer from './components/footer'
 
 //homepage
-import Homepage from './home/homepage'
+import Homepage from './pages/homepage'
 
 //product
-import ProductList from './product/productList'
-import ProductDetail from './product/productDetail'
+import ProductList from './pages/product/productList'
+import ProductDetail from './pages/product/productDetail'
 
 //member
-import UserSign from './member/usersign'
-import UserLogin from './member/userlogin'
+import UserSign from './pages/member/usersign'
+import UserLogin from './pages/member/userlogin'
+
+//cart
+import Cart from './pages/cartPage'
 
 export const store = configureStore({
   reducer: {
@@ -66,7 +71,9 @@ function App() {
             <Route path="/login" element={<UserLogin />} />
 
             {/* cart */}
-            {/* <Route index path="/cart" /> */}
+            <Route path="/cart/">
+              <Route index path="" element={<Cart />} />
+            </Route>
           </Routes>
           <Footer />
         </AuthContextProvider>

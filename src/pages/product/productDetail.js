@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react'
 // import { StarIcon } from '@heroicons/react/20/solid'
 // import { RadioGroup } from '@headlessui/react'
 import axios from 'axios'
-import { serverUrl } from '../my-config'
+import { serverUrl } from '../../my-config'
 import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { addCart } from '../../model/cartSlice'
 
 // const product = {
 //   name: 'Basic Tee 6-Pack',
@@ -68,9 +70,24 @@ export default function ProductDetail() {
   // const [selectedSize, setSelectedSize] = useState(product.sizes[2])
   // 記錄原始資料用
   const [product, setProduct] = useState([])
-  const [total, setTotal] = useState(0)
-
+  //商品數量的狀態 之後要放入購物車
+  const [amount, setAmount] = useState(0)
+  //解構路由的sid 用於跟後端要資料的時候要帶入的東西
   const { sid } = useParams()
+  //要使用store裡面的state的時候要用到的hooks
+  const state = useSelector((state) => {
+    return state.cart
+  })
+  //要使用store裡面的action的時候要用到的hooks
+  const dispatch = useDispatch()
+
+  //加入購物車按鈕
+  const handleCart = () => {
+    const { product_price, product_name, picture_url } = product[0]
+    // console.log(product[0])
+    // console.log(sid, product_name, product_price, picture_url, amount)
+    dispatch(addCart({ sid, product_name, product_price, picture_url, amount }))
+  }
 
   const getProduct = async () => {
     try {
@@ -88,7 +105,7 @@ export default function ProductDetail() {
   }, [])
 
   return (
-    <div className="bg-neutral-700 p-8">
+    <div className=" p-8" style={{ backgroundColor: '#273F41' }}>
       {product.map((v, i) => {
         return (
           <div
@@ -131,8 +148,8 @@ export default function ProductDetail() {
                 <div className="flex justify-center mt-6">
                   <button
                     onClick={() => {
-                      if (total > 0) {
-                        setTotal(total - 1)
+                      if (amount > 0) {
+                        setAmount(amount - 1)
                       }
                     }}
                   >
@@ -147,15 +164,15 @@ export default function ProductDetail() {
                   <input
                     className="mx-2 border text-center w-8"
                     type="text"
-                    value={total}
+                    value={amount}
                     onChange={(e) => {
-                      setTotal(+e.target.value)
+                      setAmount(+e.target.value)
                     }}
                   />
 
                   <button
                     onClick={() => {
-                      setTotal(total + 1)
+                      setAmount(amount + 1)
                     }}
                   >
                     <svg
@@ -169,8 +186,11 @@ export default function ProductDetail() {
                 <button
                   type="submit"
                   className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-amber-500 py-3 px-8 text-base font-medium text-white hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+                  onClick={() => {
+                    handleCart()
+                  }}
                 >
-                  Add to bag
+                  加入購物車
                 </button>
               </section>
             </div>

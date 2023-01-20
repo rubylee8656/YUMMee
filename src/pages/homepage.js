@@ -1,13 +1,14 @@
-import TopCarousel from './components/slickHome'
-import './style/homepage.scss'
-import '../tailwind.css'
+import TopCarousel from '../components/slickHome'
 
 function Homepage() {
   return (
     <>
       <div className="home-index-container">
         <section className="home-navbar-sec">{/* <Navbar /> */}</section>
-        <section className="home-top-carousel-sec relative">
+        <section
+          className="home-top-carousel-sec relative"
+          style={{ backgroundColor: '#273F41' }}
+        >
           <div className="home-top-article-div absolute z-20 top-1/3 p-12 md:left-1/4 ">
             <p className="home-top-article text-amber-200 text-3xl font-bold md:text-4xl">
               Creating a better future through food.

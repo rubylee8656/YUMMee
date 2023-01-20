@@ -2,7 +2,10 @@ import '../tailwind.css'
 
 export default function Footer() {
   return (
-    <div className="bg-white pt-12 pl-8 pr-8 pb-8">
+    <div
+      className="pt-12 pl-8 pr-8 pb-8"
+      style={{ backgroundColor: '#2F2E2C' }}
+    >
       <div className="">
         <div className="flex items-center justify-center">
           <div className="pr-10">

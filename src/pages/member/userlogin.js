@@ -2,7 +2,7 @@ import { LockClosedIcon } from '@heroicons/react/20/solid'
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useState } from 'react'
 import axios from 'axios'
-import AuthContext from '../contexts/AuthContext'
+import AuthContext from '../../contexts/AuthContext'
 
 export default function UserLogin() {
   const navigate = useNavigate()
@@ -33,7 +33,10 @@ export default function UserLogin() {
 
   return (
     <>
-      <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-neutral-700">
+      <div
+        className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+        style={{ backgroundColor: '#273F41' }}
+      >
         <div className="w-full max-w-md space-y-8">
           <div>
             <div className="flex justify-center">
