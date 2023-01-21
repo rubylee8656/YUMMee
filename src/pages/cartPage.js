@@ -38,7 +38,7 @@ export default function Cart() {
     }, 0)
     setTotalPrice(total)
   }
-  
+
   const handleSubmit = async () => {
     if (state.cart.length > 0) {
       const [orders] = state.cart.map((e) => {
@@ -139,9 +139,15 @@ export default function Cart() {
             繼續逛逛
             <span aria-hidden="true"> &rarr;</span>
           </Link>
-          <div className="flex items-center justify-center rounded-md border border-transparent bg-amber-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-amber-500 cursor-pointer w-1/3">
-            確認付款去
-          </div>
+          <button
+            className="bg-amber-600 py-3 rounded-md text-white hover:bg-amber-500 w-1/3"
+            onClick={(e) => {
+              e.preventDefault()
+              handleSubmit()
+            }}
+          >
+            確認送出訂單
+          </button>
         </div>
       </div>
     </div>
