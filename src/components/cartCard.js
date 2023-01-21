@@ -7,14 +7,14 @@ const CartCard = (prop) => {
   const dispatch = useDispatch()
   return (
     <li key={sid} className="flex py-6">
-      <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md ">
+      <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md mr-3">
         <img
           src={serverUrl + `/images/product/${picture_url}`}
           alt={product_name}
           className="h-full w-full object-cover object-center"
         />
       </div>
-      <div className="flex sm:flex-1 sm:flex-col lg:flex-row lg:items-center font-medium text-white grid grid-cols-4">
+      <div className="flex sm:flex-1 sm:flex-col lg:flex-row items-center font-medium text-white grid grid-cols-4">
         <h3 className="flex justify-center">{product_name}</h3>
         <p className="flex justify-center">${product_price}</p>
         <div className="flex justify-center">

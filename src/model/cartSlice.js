@@ -41,10 +41,10 @@ export const cartSlice = createSlice({
     },
     deleteCart(state, action) {
       const { sid } = action.payload
-      const cart = state.cart.filter((v) => {
+      state.cart = state.cart.filter((v) => {
         return v.sid !== sid
       })
-      localStorage.setItem('cart', JSON.stringify(cart))
+      localStorage.setItem('cart', JSON.stringify(state.cart))
     },
     incrementCart(state, action) {
       const { sid } = action.payload
