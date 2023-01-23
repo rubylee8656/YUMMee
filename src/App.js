@@ -25,6 +25,7 @@ import UserLogin from './pages/member/userlogin'
 
 //cart
 import Cart from './pages/cartPage'
+import OrderHistory from './pages/cart/orders'
 
 export const store = configureStore({
   reducer: {
@@ -73,6 +74,7 @@ function App() {
             {/* cart */}
             <Route path="/cart/">
               <Route index path="" element={<Cart />} />
+              <Route path="orders" element={<OrderHistory />} />
             </Route>
           </Routes>
           <Footer />

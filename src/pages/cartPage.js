@@ -41,20 +41,22 @@ export default function Cart() {
 
   const handleSubmit = async () => {
     if (state.cart.length > 0) {
-      const [orders] = state.cart.map((e) => {
+      const orders = state.cart.map((e) => {
         return { sid: e.sid, amount: e.amount }
       })
-      const { orderData } = await axios.post('', {
+      const { data } = await axios.post('http://localhost:3008/cart/neworder', {
         orders,
         mb_sid: myAuth.mb_sid,
         payWay,
       })
-      if (orderData.output.success) {
+      console.log(data)
+      if (data.output.success) {
+        // localStorage.removeItem('cart')
         alert('結帳成功')
-        // navigate('')
+        // navigate('/cart/orders')
       } else {
         alert('結帳失敗')
-        console.log(orderData.output)
+        console.log(data.output)
       }
     }
   }
@@ -101,7 +103,7 @@ export default function Cart() {
                           ? 'bg-white'
                           : 'bg-neutral-700 bg-opacity-75 text-white'
                       }
-                      flex cursor-pointer rounded-lg py-2 px-8 focus:outline-none`
+                      flex cursor-pointer rounded-lg py-2 px-6 focus:outline-none`
                     }
                   >
                     {({ active, checked }) => (
