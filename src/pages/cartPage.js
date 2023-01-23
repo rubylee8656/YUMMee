@@ -51,9 +51,9 @@ export default function Cart() {
       })
       console.log(data)
       if (data.output.success) {
-        // localStorage.removeItem('cart')
+        localStorage.removeItem('cart')
         alert('結帳成功')
-        // navigate('/cart/orders')
+        navigate('/cart/orders')
       } else {
         alert('結帳失敗')
         console.log(data.output)
