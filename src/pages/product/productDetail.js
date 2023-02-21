@@ -71,7 +71,7 @@ export default function ProductDetail() {
   // 記錄原始資料用
   const [product, setProduct] = useState([])
   //商品數量的狀態 之後要放入購物車
-  const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState(1)
   //解構路由的sid 用於跟後端要資料的時候要帶入的東西
   const { sid } = useParams()
   //要使用store裡面的state的時候要用到的hooks
@@ -148,7 +148,7 @@ export default function ProductDetail() {
                 <div className="flex justify-center mt-6">
                   <button
                     onClick={() => {
-                      if (amount > 0) {
+                      if (amount > 1) {
                         setAmount(amount - 1)
                       }
                     }}

@@ -26,6 +26,7 @@ import UserLogin from './pages/member/userlogin'
 //cart
 import Cart from './pages/cartPage'
 import OrderHistory from './pages/cart/orders'
+import PayConfirm from './pages/cart/confirm'
 
 export const store = configureStore({
   reducer: {
@@ -75,6 +76,7 @@ function App() {
             <Route path="/cart/">
               <Route index path="" element={<Cart />} />
               <Route path="orders" element={<OrderHistory />} />
+              <Route path="linepay/confirm" element={<PayConfirm />} />
             </Route>
           </Routes>
           <Footer />

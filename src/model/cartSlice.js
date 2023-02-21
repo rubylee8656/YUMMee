@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+//初始化state
 const initialState = {
   cart: [
     // {
@@ -12,6 +13,7 @@ const initialState = {
   ],
 }
 
+//把localstorage拿出來的字串轉為物件 設定進cart
 if (localStorage.getItem('cart')?.length) {
   initialState.cart = [...JSON.parse(localStorage.getItem('cart'))]
 }
@@ -64,10 +66,14 @@ export const cartSlice = createSlice({
       }
       localStorage.setItem('cart', JSON.stringify(state.cart))
     },
+    clearCart(state) {
+      state.cart = []
+      localStorage.removeItem('cart')
+    },
   },
 })
 
-export const { addCart, incrementCart, decrementCart, deleteCart } =
+export const { addCart, incrementCart, decrementCart, deleteCart,clearCart } =
   cartSlice.actions
 
 export default cartSlice.reducer

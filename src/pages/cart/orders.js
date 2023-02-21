@@ -9,11 +9,12 @@ export default function OrderHistory() {
   const { myAuth } = useContext(AuthContext)
 
   const [getorder, setGetOrder] = useState([])
+  const [orderDetail, setOrderDetail] = useState([])
 
   const getOrder = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3008/cart/getorder/${myAuth.mb_sid}`
+        `http://localhost:3008/cart/getorderlist/${myAuth.mb_sid}`
       )
       for (let i = 1; i < response.data.getorder_rows.length; i++) {
         response.data.getorder_rows[i].ordered_at = dayjs(
@@ -27,6 +28,13 @@ export default function OrderHistory() {
       console.error(e.message)
     }
   }
+  // const getOrderDetail = async () => {
+  //   try {
+  //     const response = await axios.get()
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
   useEffect(() => {
     getOrder()
   }, [])

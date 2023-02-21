@@ -6,6 +6,7 @@ import { RadioGroup } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/20/solid'
 import axios from 'axios'
 import AuthContext from '../contexts/AuthContext'
+import { clearCart } from '../model/cartSlice'
 
 const pay = [
   {
@@ -20,6 +21,7 @@ const pay = [
 ]
 
 export default function Cart() {
+  const dispatch = useDispatch()
   const { myAuth } = useContext(AuthContext)
   const navigate = useNavigate()
 
@@ -44,19 +46,31 @@ export default function Cart() {
       const orders = state.cart.map((e) => {
         return { sid: e.sid, amount: e.amount }
       })
-      const { data } = await axios.post('http://localhost:3008/cart/neworder', {
-        orders,
-        mb_sid: myAuth.mb_sid,
-        payWay,
-      })
-      console.log(data)
-      if (data.output.success) {
-        localStorage.removeItem('cart')
-        alert('結帳成功')
-        navigate('/cart/orders')
+      const { data } = await axios.post(
+        `http://localhost:3008/cart/${
+          payWay === 'LinePay' ? 'linepay' : 'neworder'
+        }`,
+        {
+          orders,
+          mb_sid: myAuth.mb_sid,
+          payWay,
+        }
+      )
+      // console.log('hh:',data)
+      if (data.success) {
+        if (payWay === '現金') {
+          dispatch(clearCart())
+          alert('結帳成功')
+        }
+        if (payWay === 'LinePay') {
+          // console.log('url:', data.pay_url)
+          dispatch(clearCart())
+          window.open(data.pay_url, '_self')
+        }
+        // navigate('/cart/orders')
       } else {
         alert('結帳失敗')
-        console.log(data.output)
+        // console.log(data.output)
       }
     }
   }
@@ -68,7 +82,6 @@ export default function Cart() {
   // function classNames(...classes) {
   //   return classes.filter(Boolean).join(' ')
   // }
-
   return (
     <div
       className="flex flex-col shadow-xl items-center"
